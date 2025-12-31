@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <title>VR Cinema</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 </head>
 <body>
-  <a-scene>
-    <a-assets>
-      <video id="vid" src="video.mp4" autoplay loop muted></video>
-    </a-assets>
 
-    <!-- Flat screen -->
-    <a-video src="#vid"
-             width="6"
-             height="3.5"
-             position="0 2 -6">
-    </a-video>
+<a-scene>
+  <a-assets>
+    <video id="vid"
+           src="video.mp4"
+           autoplay
+           loop
+           muted
+           playsinline
+           webkit-playsinline>
+    </video>
+  </a-assets>
 
-    <a-camera></a-camera>
-  </a-scene>
+  <a-video id="screen"
+           src="#vid"
+           position="0 2 -6">
+  </a-video>
+
+  <a-camera></a-camera>
+</a-scene>
+
+<script>
+  const video = document.getElementById('vid');
+  const screen = document.getElementById('screen');
+
+  video.addEventListener('loadedmetadata', () => {
+    const aspect = video.videoWidth / video.videoHeight;
+
+    const baseHeight = 3.5; // meters
+    const width = baseHeight * aspect;
+
+    screen.setAttribute('width', width);
+    screen.setAttribute('height', baseHeight);
+  });
+</script>
+
 </body>
 </html>
