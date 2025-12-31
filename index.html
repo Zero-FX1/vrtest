@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-assets>
+      <video id="vid" src="video.mp4" autoplay loop muted></video>
+    </a-assets>
+
+    <!-- Flat screen -->
+    <a-video src="#vid"
+             width="6"
+             height="3.5"
+             position="0 2 -6">
+    </a-video>
+
+    <a-camera></a-camera>
+  </a-scene>
+</body>
+</html>
